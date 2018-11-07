@@ -1,9 +1,9 @@
 package br.ufc.crateus.aps.Iterator;
 
-public interface Iterator {
+public interface Iterator <T> {
 
 	boolean hasNext();
 
-	Object next();
+	T next();
 	
 }
