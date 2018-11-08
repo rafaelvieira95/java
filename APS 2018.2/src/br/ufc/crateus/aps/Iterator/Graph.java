@@ -1,29 +1,20 @@
 package br.ufc.crateus.aps.Iterator;
 
+import java.util.LinkedList;
+import java.util.List;
 
 public class Graph <T> implements GraphOperator<T>{
 
 	  private int dimension;
 	  private int current = 0; 
+	  private int init = 0;
+	 
+      RelationShip [][] R;
 	  
-      private static class Node{
-    	  
-    	  private Node next;
-    	  private RelationShip r;
-    	  
-    	  public Node(RelationShip r,Node next) {
-    		  this.next = next;
-    		  this.r = r;
-    	  }
-    	  
-      }
-      
-      private Node root[];
-      
       public Graph(int dimension) {
 		  
 		  this.dimension = dimension;
-		  this.root = new Node[dimension];
+		  this.R = new RelationShip[dimension][dimension];
 	  
 	  }
 	  
@@ -33,44 +24,49 @@ public class Graph <T> implements GraphOperator<T>{
 	  
 	@Override
 	public boolean hasNext() {
-		return current < dimension;
+		return init < dimension;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T next() {
-		  
-		Node p = root[current];
 		
-	      while(p != null) {
-	          
-	    	  T temp = (T) p.r;
-	    	  
-	          p = p.next;
-	    	  
-	    	  return temp != null? temp : null;   
-	       }
-	      if(p == null) current++;
-	      
-		return null;
+		current = 0;
+		List<T> ll = null; 
+		
+		if(R[init][init] != null) {
+		System.out.println("Amigos de "+R[init][init].getName()); 
+		 ll = new LinkedList<>();
+		}
+		   do {   
+
+			if(R[init][current] != null && current != init) {
+			  ll.add((T) R[init][current]);
+		 }
+			current++;
+			
+	  }while(current < dimension);
+		 
+		  init++;
+		   
+		  return ll != null ?(T) ll :(T) "";  
 	}
 
 	
 	@Override
 	public boolean addFriend(RelationShip f,RelationShip f2) {
 	
-		if(f.getId() < dimension && f2.getId() < dimension) {
+	  if(R[f.getId()][f2.getId()] == null) {
+		  
+		  R[f.getId()][f.getId()] = f;
+		  R[f2.getId()][f2.getId()] = f2;
+		  
+		  R[f.getId()][f2.getId()] = f2;
+		  R[f2.getId()][f.getId()] = f;
+		  return true;
+	  }
 			
-			for(Node p = this.root[f.getId()]; p != null; p = p.next) {    
-				if(p.equals(f2)) return false;
-			}
-			
-			this.root[f.getId()] = new Node(f2,this.root[f.getId()]);
-			this.root[f2.getId()] = new Node(f,this.root[f2.getId()]);
-			
-			return true;
-		}
-		
-
+	
 		return false;
 	}
 
