@@ -20,7 +20,7 @@ public abstract class RelationShip {
 	
 	@Override
 	public String toString() {
-		return "Id: "+this.id +" Name: "+this.name+" \n";
+		return this.name;
 	}
 	
 }
