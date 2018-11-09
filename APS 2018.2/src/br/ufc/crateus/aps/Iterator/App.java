@@ -21,7 +21,8 @@ public class App {
 		gp.addFriend(f, c);
 		gp.addFriend(b, c);
 		
-		while(gp.hasNext()) {
+	
+			while(gp.hasNext()) {
 			System.out.println(gp.next());
 		}
      
