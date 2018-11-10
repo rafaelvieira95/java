@@ -3,8 +3,16 @@ package br.ufc.crateus.aps.facade;
 public class Emprestimo {
 	
 	 private Aluno aluno;
-	 private Livro livroEmprestado;
-	 private int prazo;
+	 private Exemplar livroEmprestado;
+	 private int dataEmprestimo;
+	 private int dataEntrega;
+	 
+	 public Emprestimo(Aluno aluno,Exemplar livroEmprestado,int dataEmprestimo,int dataEntrega) {
+		 this.aluno = aluno;
+		 this.livroEmprestado = livroEmprestado;
+		 this.dataEmprestimo = dataEmprestimo;
+		 this.dataEntrega = dataEntrega;
+	 }
 	 
 	public Aluno getAluno() {
 		return aluno;
@@ -12,18 +20,25 @@ public class Emprestimo {
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
-	public Livro getLivroEmprestado() {
+	public Exemplar getLivroEmprestado() {
 		return livroEmprestado;
 	}
 	public void setLivroEmprestado(Livro livroEmprestado) {
 		this.livroEmprestado = livroEmprestado;
 	}
-	public int getPrazo() {
-		return prazo;
+	public int getDataEmprestimo() {
+		return dataEmprestimo;
 	}
-	public void setPrazo(int prazo) {
-		this.prazo = prazo;
+	public void setDataEmprestimo(int dataEmprestimo) {
+		this.dataEmprestimo = dataEmprestimo;
 	}
-	 
+	public int getDataEntrega() {
+		return dataEntrega;
+	}
+	public void setDataEntrega(int dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
+
+	
 	 
 }

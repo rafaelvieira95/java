@@ -4,8 +4,16 @@ public class Aluno {
 
 	private int matricula;
 	private String nome;
-	private Livro livro;
 	
+	@SuppressWarnings("unused")
+	private Exemplar exemplar;
+
+	
+	public Aluno(String nome,int matricula,Exemplar exemplar) {
+		this.nome = nome;
+		this.matricula = matricula;
+		this.exemplar = exemplar;
+	}
 	
 	public int getMatricula() {
 		return matricula;
@@ -19,12 +27,6 @@ public class Aluno {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Livro getLivro() {
-		return livro;
-	}
-	public void setLivro(Livro livro) {
-		this.livro = livro;
-	}
-	
-	
+
+
 }

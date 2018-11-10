@@ -2,20 +2,30 @@ package br.ufc.crateus.aps.facade;
 
 public class Multa {
 	
-    private  double MULTA_DIARIA = 0.10;
+    private static final double MULTA_DIARIA = 0.10;
 	private Aluno alunoDevedor;
-	private Livro livroPendente;
+	private Exemplar livroPendente;
 	private Emprestimo numeroDias;
-	private double valor_multa;
-
-	public double getMULTA_DIARIA() {
-		return MULTA_DIARIA;
+	private int diaLivroEntreque;
+    
+	public Multa(Aluno alunoDevedor,Exemplar livroPendente,Emprestimo numeroDias,int diaLivroEntregue) {
+		this.alunoDevedor = alunoDevedor;
+		this.livroPendente = livroPendente;
+		this.numeroDias = numeroDias;
+		this.diaLivroEntreque = diaLivroEntregue;
 	}
-
-	public void setMULTA_DIARIA(double mULTA_DIARIA) {
-		MULTA_DIARIA = mULTA_DIARIA;
+	
+	public double valorMulta() {
+		
+        int cobranca = numeroDias.getDataEntrega() - diaLivroEntreque;
+        double multa = 0.0;
+        
+		if(diaLivroEntreque - numeroDias.getDataEntrega() == 0) return 0.0;
+		if(numeroDias.getDataEntrega() - diaLivroEntreque > 0)  return 0.0;
+		if(cobranca < 0) multa =  -cobranca * MULTA_DIARIA;
+		return multa;
 	}
-
+	
 	public Aluno getAlunoDevedor() {
 		return alunoDevedor;
 	}
@@ -24,7 +34,7 @@ public class Multa {
 		this.alunoDevedor = alunoDevedor;
 	}
 
-	public Livro getLivroPendente() {
+	public Exemplar getLivroPendente() {
 		return livroPendente;
 	}
 
@@ -40,12 +50,14 @@ public class Multa {
 		this.numeroDias = numeroDias;
 	}
 
-	public double getValor_multa() {
-		return valor_multa;
+	public int getDiaLivroEntreque() {
+		return diaLivroEntreque;
 	}
 
-	public void setValor_multa(double valor_multa) {
-		this.valor_multa = valor_multa;
+	public void setDiaLivroEntreque(int diaLivroEntreque) {
+		this.diaLivroEntreque = diaLivroEntreque;
 	}
+  
+	
 	
 }
