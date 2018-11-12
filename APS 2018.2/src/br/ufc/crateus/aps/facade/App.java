@@ -3,8 +3,7 @@ package br.ufc.crateus.aps.facade;
 public class App {
 
 	public static void main(String[] args) {
-		
-	   	
+			
 	   Exemplar livro = new Livro("A cabana", "Desconhecido", 2012,"Elsevier" , "BR16545651651RT");
 	   Exemplar rev = new Revista("A Bola",39,2018);
 	   
