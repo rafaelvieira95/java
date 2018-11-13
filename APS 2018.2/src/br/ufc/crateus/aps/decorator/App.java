@@ -10,7 +10,8 @@ public class App {
 		    EquipmentDecorator flash = new FlashLight();
 		    EquipmentDecorator weapon = new Weapon();
 		    EquipmentDecorator boots = new Boots();
-		    EquipmentDecorator complete = new Boots(new BulletProofVest(new Weapon(new FlashLight())));
+	
+		   EquipmentDecorator complete = new BulletProofVest(new FlashLight( new Weapon( new Boots() ))); 
 		    
 		    System.out.println("Cost Bullet Proof vest : "+bpv.cost(person) );
 		    System.out.println("Cost FlashLight : "+ flash.cost(person));
