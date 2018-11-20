@@ -36,7 +36,7 @@ public class Graph <T> implements GraphOperator<T>{
 		
 		if(R[init][init] != null) {
 		System.out.println("Amigos de "+R[init][init].getName()); 
-		 ll = new LinkedList<>();
+		 ll = new LinkedList<T>();
 		}
 		   do {   
 
