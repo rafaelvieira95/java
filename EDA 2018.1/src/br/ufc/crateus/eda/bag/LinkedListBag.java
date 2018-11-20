@@ -3,16 +3,13 @@ package br.ufc.crateus.eda.bag;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+public class LinkedListBag<E> extends AbstractListBag<E> {
 
-public class LinkedListBag <E> extends  AbstractListBag <E> {
-
-    private class Node{
+    private class Node {
 
         E element;
         Node next;
-
-        private Node current = null;
-
+        
         public Node(E element, Node next) {
 
             this.element = element;
@@ -21,40 +18,37 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
 
     }
 
-
-    private  Node list;
+    private Node list;
 
     int count;
 
     @Override
     public void add(E e) {
-       list = new Node(e,list);
-         count++;
+        list = new Node(e, list);
+        count++;
     }
-
-
 
     @Override
     public void remove(E e) {
 
-        Node h = new Node(null,list);
+        Node h = new Node(null, list);
 
-        if(e.equals(list.element)) {
+        if (e.equals(list.element)) {
             list = list.next;
             h = list;
             count--;
 
-        }else{
+        } else {
 
-        for(Node p = h; p.next != null; p = p.next) {
+            for (Node p = h; p.next != null; p = p.next) {
 
-            if (e.equals(p.next.element)) {
+                if (e.equals(p.next.element)) {
 
-                p.next = p.next.next;
-                count--;
-                break;
+                    p.next = p.next.next;
+                    count--;
+                    break;
+                }
             }
-          }
         }
 
     }
@@ -66,16 +60,16 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
 
     @Override
     public int size() {
-		
+
         return this.count;
     }
 
     @Override
     public boolean contains(E o) {
 
-        for(E e: this){
+        for (E e : this) {
 
-            if(e.equals(o)){
+            if (e.equals(o)) {
 
                 return true;
             }
@@ -89,9 +83,9 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
 
         int index = 0;
 
-        for(E e : this){
-        index++;
-            if(e.equals(o)){
+        for (E e : this) {
+            index++;
+            if (e.equals(o)) {
 
                 return index;
             }
@@ -108,9 +102,9 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
     @Override
     public E remove(int index) {
 
-        int count=0;
+        int count = 0;
 
-        for(Node node = this.list; node != null; node = node.next) {
+        for (Node node = this.list; node != null; node = node.next) {
             count++;
 
             if (count == index) {
@@ -127,29 +121,35 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
     public E set(int index, E element) {
 
         Node aux = list;
-        int acc=1;
+        int acc = 1;
 
-        if(index > count || index <= 0) throw  new NoSuchElementException();
+        if (index > count || index <= 0) {
+            throw new NoSuchElementException();
+        }
 
-        while(aux != null){
+        while (aux != null) {
 
-            if(acc <= count)
-                if(acc == index)
+            if (acc <= count) {
+                if (acc == index) {
                     aux.element = element;
+                }
+            }
 
-              aux = aux.next;
-                acc++;
+            aux = aux.next;
+            acc++;
         }
 
         return element;
     }
 
     @Override
-    public AbstractListBag <E> subList(int fromIndex, int toIndex) {
+    public AbstractListBag<E> subList(int fromIndex, int toIndex) {
 
-        LinkedListBag <E> subList = new LinkedListBag<E>();
+        LinkedListBag<E> subList = new LinkedListBag<E>();
 
-        if (count < toIndex) throw new IndexOutOfBoundsException();
+        if (count < toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
 
         int init = 0, last = 0;
         for (E e : this) {
@@ -159,15 +159,15 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
                 last = init;
             } else {
 
-
-                if (last <= toIndex + 1)
+                if (last <= toIndex + 1) {
                     subList.add(e);
+                }
 
             }
-               last++;
+            last++;
         }
 
-            return subList;
+        return subList;
 
     }
 
@@ -177,6 +177,7 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
         return new Iterator<E>() {
 
             Node current;
+
             @Override
             public boolean hasNext() {
 
@@ -200,31 +201,29 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
                 } else {
 
                     if (current != null) {
-                            current = current.next;
-                            return current.element;
+                        current = current.next;
+                        return current.element;
 
                     }
                 }
-                throw  new NoSuchElementException();
+                throw new NoSuchElementException();
             }
         };
     }
 
+    public void printer() {
 
-    public void printer(){
-
-        if(this.list == null) {
+        if (this.list == null) {
 
             System.out.printf("[]");
 
-        }else {
-            for(E e: this){
+        } else {
+            for (E e : this) {
                 System.out.println(e);
             }
 
         }
 
-
-        }
+    }
 
 }
