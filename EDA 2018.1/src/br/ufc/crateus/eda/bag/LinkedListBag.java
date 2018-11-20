@@ -147,7 +147,7 @@ public class LinkedListBag <E> extends  AbstractListBag <E> {
     @Override
     public AbstractListBag <E> subList(int fromIndex, int toIndex) {
 
-        LinkedListBag <E> subList = new LinkedListBag<>();
+        LinkedListBag <E> subList = new LinkedListBag<E>();
 
         if (count < toIndex) throw new IndexOutOfBoundsException();
 

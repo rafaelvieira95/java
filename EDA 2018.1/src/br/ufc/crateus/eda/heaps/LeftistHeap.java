@@ -59,7 +59,7 @@ public class LeftistHeap <K extends Comparable <K>> {
 	
 	public LeftistHeap<K> meld(LeftistHeap<K> h1, LeftistHeap<K> h2) {
 		
-		LeftistHeap <K> h3 = new LeftistHeap<>();
+		LeftistHeap <K> h3 = new LeftistHeap<K>();
 		h3.root = merge(h1.root,h2.root);
 		
 		return h3;

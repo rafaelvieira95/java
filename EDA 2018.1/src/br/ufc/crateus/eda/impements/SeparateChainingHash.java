@@ -194,7 +194,7 @@ public class SeparateChainingHash <Key,Value> implements ST<Key,Value> {
         for(int i = 0; i < arr.length; i++){
 
             int N = arr[i];
-            SeparateChainingHash<Integer, Integer> st = new SeparateChainingHash<>(N / 100);
+            SeparateChainingHash<Integer, Integer> st = new SeparateChainingHash<Integer, Integer>(N / 100);
             Random r = new Random();
             for(int j = 0; j < arr[i]; j++) {
                 st.put(r.nextInt(),j);

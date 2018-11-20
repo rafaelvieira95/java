@@ -15,8 +15,8 @@ public class Implements extends LinearProbingHashST<Object, Object> {
 	private static LinkedListST<Integer, Integer> multiply(LinkedListST<Integer, Integer> p1,
 			LinkedListST<Integer, Integer> p2) {
 
-		LinearProbingHash<Integer, Integer> temp = new LinearProbingHash<>();
-		LinkedListST<Integer, Integer> p3 = new LinkedListST<>();
+		LinearProbingHash<Integer, Integer> temp = new LinearProbingHash<Integer, Integer>();
+		LinkedListST<Integer, Integer> p3 = new LinkedListST<Integer, Integer>();
 
 		for (Integer x : p1.Keys()) {
 			for (Integer y : p2.Keys()) {

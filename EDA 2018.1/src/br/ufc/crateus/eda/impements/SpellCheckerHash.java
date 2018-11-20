@@ -213,7 +213,7 @@ public class SpellCheckerHash {
 	}
 
 	private List<String> probeInverseChar(SpellCheckerHash sp, String words) {
-		List<String> list = new ArrayList<>();
+		List<String> list = new ArrayList<String>();
 
 		for (Node p = sp.arr[sp.hash(words)]; p != null; p = p.next) {
 
@@ -260,7 +260,7 @@ public class SpellCheckerHash {
 	}
 
 	private List<String> probeWordsAddChar(SpellCheckerHash sp, String words) {
-		List<String> list = new ArrayList<>();
+		List<String> list = new ArrayList<String>();
 		for (Node p = sp.arr[hash(words)]; p != null; p = p.next) {
 			if (words.length() == p.key.length() - 1) {
 				if (myCompareAddChar(words, p.key))
@@ -288,7 +288,7 @@ public class SpellCheckerHash {
 	}
 
 	private List<String> probeWordsSubChar(SpellCheckerHash sp, String words) {
-		List<String> list = new ArrayList<>();
+		List<String> list = new ArrayList<String>();
 
 		for (Node p = sp.arr[sp.hash(words)]; p != null; p = p.next) {
 			if (words.length() - 1 == p.key.length())

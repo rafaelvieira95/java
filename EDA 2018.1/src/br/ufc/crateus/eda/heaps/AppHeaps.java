@@ -6,8 +6,8 @@ public class AppHeaps {
 
 		// DWayHeap<Integer> h1 = new DWayHeap<>(3, 32);
 		// DWayHeap<Integer> h2 = new DWayHeap<>(3, 32);
-		LeftistHeap<Integer> h1 = new LeftistHeap<>();
-		 LeftistHeap<Integer> h2 = new LeftistHeap<>();
+		LeftistHeap<Integer> h1 = new LeftistHeap<Integer>();
+		 LeftistHeap<Integer> h2 = new LeftistHeap<Integer>();
 		//BinaryHeap<Integer> h1 = new BinaryHeap<>();
 		//BinaryHeap<Integer> h2 = new BinaryHeap<>();
 

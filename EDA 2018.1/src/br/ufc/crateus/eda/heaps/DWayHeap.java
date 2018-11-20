@@ -82,7 +82,7 @@ public class DWayHeap <K extends Comparable <K>>{
 	//o custo O(N+M) operações
 	public DWayHeap<K> meld(DWayHeap<K> h1, DWayHeap<K> h2) {
 	
-		DWayHeap<K> h3 = new DWayHeap<>(h1.heapOrder,h1.N + h2.N + 1);
+		DWayHeap<K> h3 = new DWayHeap<K>(h1.heapOrder,h1.N + h2.N + 1);
 		int maxHeap = 0;
 		int minHeap = 0;
 		
@@ -215,7 +215,7 @@ public class DWayHeap <K extends Comparable <K>>{
 	
 	public void Keys() {
 		if(N==0) return;
-		List <K> ll = new LinkedList<>();
+		List <K> ll = new LinkedList<K>();
 		for(K key : heap) {
 			   if(key != null)
 				ll.add(key);

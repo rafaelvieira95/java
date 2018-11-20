@@ -84,7 +84,7 @@ public class BinaryHeap<K extends Comparable<K>>{
 
 	public BinaryHeap <K> meld(BinaryHeap<K> h1, BinaryHeap<K> h2) {
 	 	
-		BinaryHeap<K> h3 = new BinaryHeap<>(h1.N + h2.N + 1);
+		BinaryHeap<K> h3 = new BinaryHeap<K>(h1.N + h2.N + 1);
 		int maxHeap = 0;
 		int minHeap = 0;
 	
@@ -187,7 +187,7 @@ public class BinaryHeap<K extends Comparable<K>>{
 		
 	public void Keys() {
 		if(N==0) return;
-		List <K> ll = new LinkedList<>();
+		List <K> ll = new LinkedList<K>();
 		for(K key : heap) {
 			   if(key != null)
 				ll.add(key);
