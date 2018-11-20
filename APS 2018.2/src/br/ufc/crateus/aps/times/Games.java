@@ -8,7 +8,7 @@ public class Games {
 		this.numTeams = numTeams;
 	}
 	
-	private LinkedList<Teams> list = new LinkedList<>();
+	private LinkedList<Teams> list = new LinkedList<Teams>();
 	private int numMatches;
 	private int numTeams;	
 	
@@ -16,9 +16,12 @@ public class Games {
     
 	public void put(String name,int points) {
 		
-		name = name.replaceAll("[á,Á,ã,Ã,ä,Ä,à,À,â,Â]", "a").replaceAll("[é,É,ë,Ë,ẽ,Ẽ,ê,Ê]","e").
-				                       replaceAll("[í,Í]","i").replaceAll("[ó,Ó,ò,ò,ö,Ö,õ,Õ,ô,Ô]","o").replaceAll("[ú,Ú,ù,ù,ü,Ü]","u").
-				                       replaceAll("[ç,Ç]","c");
+		name = name.replaceAll("[á,Á,ã,Ã,ä,Ä,à,À,â,Â]", "a").
+                        replaceAll("[é,É,ë,Ë,ẽ,Ẽ,ê,Ê]","e").
+		        replaceAll("[í,Í]","i").
+                        replaceAll("[ó,Ó,ò,ò,ö,Ö,õ,Õ,ô,Ô]","o").
+                        replaceAll("[ú,Ú,ù,ù,ü,Ü]","u").
+		        replaceAll("[ç,Ç]","c");
 		
 		if(this.numTeams >= 2 && this.numTeams <= 200 && this.numMatches >= 0) {
 		
