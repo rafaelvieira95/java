@@ -6,7 +6,7 @@ public class Cliente {
 	
 		//questao 02 e 03 estão embutidas nesta classe
   
-		FabricaAbstrata bank = FactoryLogon.factoryMethodLogon(CodigoBancos.BRADESCO);
+		FabricaAbstrata bank = FactoryLogon.factoryMethodLogon(CodigoBancos.CAIXA);
 		bank.gerarMensagemLogon().mostrarTelaGrafica();
  
 	}

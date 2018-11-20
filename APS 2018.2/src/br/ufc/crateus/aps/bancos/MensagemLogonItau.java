@@ -9,7 +9,7 @@ public class MensagemLogonItau extends MensagemLogon {
 	public void mostrarTelaGrafica() {
 		
 		this.setMensagem("Seja Bem-vindo ao Banco Itaú!");
-		this.setLogo("/home/rafael/eclipse-workspace/APS 2018.2/itau_icon.png");
+		this.setLogo("/home/rafael/NetBeansProjects/java/APS 2018.2/itau_icon.png");
 		ImageIcon img = new ImageIcon(getLogo());
 		JOptionPane.showMessageDialog(null, this.getMensagem() , "Olá, Cliente!", JOptionPane.INFORMATION_MESSAGE,img);
 		

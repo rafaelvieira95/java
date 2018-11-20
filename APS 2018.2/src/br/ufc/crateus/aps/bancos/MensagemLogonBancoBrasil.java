@@ -9,7 +9,7 @@ public class MensagemLogonBancoBrasil extends MensagemLogon{
 	public void mostrarTelaGrafica() {
 		
 		this.setMensagem( "Seja Bem-vindo ao  Banco do Brasil!");
-		this.setLogo("/home/rafael/eclipse-workspace/APS 2018.2/bancobrasil_icon.png");
+		this.setLogo("/home/rafael/NetBeansProjects/java/APS 2018.2/bancobrasil_icon.png");
 		ImageIcon img =  new ImageIcon(this.getLogo());
 		JOptionPane.showMessageDialog(null,getMensagem(), "Olá, Cliente!", JOptionPane.INFORMATION_MESSAGE, img);
 		
