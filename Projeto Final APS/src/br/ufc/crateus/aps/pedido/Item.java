@@ -13,16 +13,104 @@ import java.util.List;
  *
  * @author rafael
  */
-public class Item {
+public class Item implements ColecaoItem{
     
-    int codigo;
-    int codigoPedido;
-    double preco;
-    double valorDesconto;
-    int quantidadeRoupas;
+    private int codigo;
+    private int codigoPedido;
+    private double preco;
+    private double valorDesconto;
+    private int quantidadeRoupas;
     
     
-    List <Roupa> listaRoupas = new ArrayList<>();
+    private final List <Roupa> listaRoupas;
+
+    public Item() {
+        this.listaRoupas = new ArrayList<>();
+    }
+
+
+     @Override
+    public boolean adicionarRoupa(Roupa r) {
+        if(r != null){
+            listaRoupas.add(r);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean apagarRoupa(Roupa r) {
+       if(r != null){
+           for(Roupa rp: listaRoupas){
+               if(rp.equals(r)){
+                   listaRoupas.remove(rp);
+                   return true;
+               }
+           }
+       }
+       return false;
+    }
+
+    @Override
+    public boolean colecaoVazia() {
+        return listaRoupas.isEmpty();
+    }
+
+    @Override
+    public boolean pesquisarRoupa(Roupa r) {
+        if(r != null){
+            
+            for(Roupa rp : listaRoupas)
+                if(rp.equals(r)) return true;
+        }
+        return false;
+    }
+    
+    
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCodigoPedido() {
+        return codigoPedido;
+    }
+
+    public void setCodigoPedido(int codigoPedido) {
+        this.codigoPedido = codigoPedido;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public double getValorDesconto() {
+        return valorDesconto;
+    }
+
+    public void setValorDesconto(double valorDesconto) {
+        this.valorDesconto = valorDesconto;
+    }
+
+    public int getQuantidadeRoupas() {
+        return quantidadeRoupas;
+    }
+
+    public void setQuantidadeRoupas(int quantidadeRoupas) {
+        this.quantidadeRoupas = quantidadeRoupas;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "codigo=" + codigo + ", codigoPedido=" + 
+                codigoPedido + ", preco=" + preco + ", valorDesconto=" + valorDesconto + 
+                ", quantidadeRoupas=" + quantidadeRoupas + ", listaRoupas=" + listaRoupas.toString() + '}';
+    }
+
+   
     
     
     

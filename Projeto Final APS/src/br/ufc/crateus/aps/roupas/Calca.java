@@ -20,7 +20,7 @@ public class Calca extends RoupaDecorator {
     
     @Override
     public double custoRoupa() {
-        return valor + custoComOutraRoupa();
+        return this.getValor() + custoComOutraRoupa();
     }
     
 }
