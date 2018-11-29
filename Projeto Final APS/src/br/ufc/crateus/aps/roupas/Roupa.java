@@ -24,6 +24,8 @@ public abstract class Roupa {
     
     public abstract double custoRoupa();
 
+    public abstract Roupa retornaPecaCombinada();
+    
     public int getCodigo() {
         return codigo;
     }

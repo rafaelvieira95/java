@@ -4,20 +4,20 @@
  * and open the template in the editor.
  */
 package br.ufc.crateus.aps.pedido;
-import br.ufc.crateus.aps.roupas.Roupa;
+import br.ufc.crateus.aps.roupas.RoupaDecorator;
 
 /**
  *
  * @author rafael
  */
-public interface ColecaoItem {
+public interface ColecaoRoupa {
     
-    boolean adicionarRoupa(Roupa r);
+    boolean adicionarRoupa(RoupaDecorator r);
     
-    boolean apagarRoupa(Roupa r);
+    boolean apagarRoupa(RoupaDecorator r);
     
     boolean colecaoVazia();
     
-    boolean pesquisarRoupa(Roupa r);
+    boolean pesquisarRoupa(RoupaDecorator r);
     
 }

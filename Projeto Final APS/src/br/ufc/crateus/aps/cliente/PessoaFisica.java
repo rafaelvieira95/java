@@ -16,7 +16,7 @@ public class PessoaFisica extends Cliente {
 
     private String cpf;
 
-    @SuppressWarnings("NonPublicExported")
+  
     public PessoaFisica(PFBuilder p) {
 
         setCodigo(p.codigo);
@@ -38,7 +38,7 @@ public class PessoaFisica extends Cliente {
         return super.getListaPedidos(); 
     }
     
-    static class PFBuilder {
+    public static class PFBuilder {
 
         private int codigo;
         private String nome;
@@ -111,12 +111,12 @@ public class PessoaFisica extends Cliente {
     @Override
     public void infoCliente() {
         
-        StringBuilder c = new StringBuilder("\tInformações do Cliente");
+        StringBuilder c = new StringBuilder("\tInformações do Cliente").append("\n");
         c.append("Código: ").append(getCodigo()).append("\n").
                 append("Nome: ").append(getNome()).append("\n").
                 append("CPF: ").append(cpf).append("\n").
                 append("Cidade: ").append(getCidade()).append("\n").
-                append("Estado").append(getEstado()).append("\n").
+                append("Estado: ").append(getEstado()).append("\n").
                 append("Endereço: ").append(getEndereco()).append("\n").
                 append("Cep: ").append(getCep()).append("\n").
                 append("Telefone: ").append(getTelefone()).append("\n").

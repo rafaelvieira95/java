@@ -22,5 +22,10 @@ public class Calca extends RoupaDecorator {
     public double custoRoupa() {
         return this.getValor() + custoComOutraRoupa();
     }
+
+    @Override
+    public Roupa retornaPecaCombinada() {
+         return novaRoupa != null? novaRoupa : null;
+    }
     
 }

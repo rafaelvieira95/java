@@ -36,7 +36,7 @@ public class PessoaJuridica extends Cliente{
         return super.getListaPedidos(); 
     }
     
-    static class PJBuilder {
+   public static class PJBuilder {
 
         private int codigo;
         private String nome;
@@ -118,13 +118,13 @@ public class PessoaJuridica extends Cliente{
     @Override
     public void infoCliente() {
        
-          StringBuilder c = new StringBuilder("\tInformações do Cliente");
+          StringBuilder c = new StringBuilder("\tInformações do Cliente").append("\n");
         c.append("Código: ").append(getCodigo()).append("\n").
                 append("Nome: ").append(getNome()).append("\n").
                 append("CNPJ: ").append(cnpj).append("\n").
                 append("CPF: ").append(cpf).append("\n").
                 append("Cidade: ").append(getCidade()).append("\n").
-                append("Estado").append(getEstado()).append("\n").
+                append("Estado: ").append(getEstado()).append("\n").
                 append("Endereço: ").append(getEndereco()).append("\n").
                 append("Cep: ").append(getCep()).append("\n").
                 append("Telefone: ").append(getTelefone()).append("\n").

@@ -6,14 +6,17 @@
 package br.ufc.crateus.aps.pedido;
 
 import br.ufc.crateus.aps.roupas.Roupa;
+import br.ufc.crateus.aps.roupas.RoupaDecorator;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  *
  * @author rafael
  */
-public class Item implements ColecaoItem{
+public class Item implements ColecaoRoupa{
     
     private int codigo;
     private int codigoPedido;
@@ -21,51 +24,52 @@ public class Item implements ColecaoItem{
     private double valorDesconto;
     private int quantidadeRoupas;
     
+    private List <Roupa> listaRoupas;
     
-    private final List <Roupa> listaRoupas;
-
-    public Item() {
-        this.listaRoupas = new ArrayList<>();
+    public Item(){
+       listaRoupas = new ArrayList<>();
     }
-
-
-     @Override
-    public boolean adicionarRoupa(Roupa r) {
+    
+    @Override
+    public boolean adicionarRoupa(RoupaDecorator r) {
         if(r != null){
-            listaRoupas.add(r);
+     
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean apagarRoupa(Roupa r) {
-       if(r != null){
-           for(Roupa rp: listaRoupas){
-               if(rp.equals(r)){
-                   listaRoupas.remove(rp);
-                   return true;
-               }
-           }
-       }
-       return false;
+    public boolean apagarRoupa(RoupaDecorator r) {
+        
+        if(r != null){
+            
+            for(Roupa roupa: listaRoupas){
+                if(roupa.equals(r)) {
+                    listaRoupas.remove(r);
+                    return true;
+                }
+            }
+            
+        }
+        return false;
     }
 
     @Override
     public boolean colecaoVazia() {
-        return listaRoupas.isEmpty();
+       return listaRoupas.isEmpty();
     }
 
     @Override
-    public boolean pesquisarRoupa(Roupa r) {
-        if(r != null){
+    public boolean pesquisarRoupa(RoupaDecorator r) {
+       if(r != null){
+           for(Roupa roupa : listaRoupas){
             
-            for(Roupa rp : listaRoupas)
-                if(rp.equals(r)) return true;
-        }
-        return false;
+               if(roupa.equals(r)) return true;
+           }
+       }
+       return false;
     }
-    
     
     public int getCodigo() {
         return codigo;
@@ -110,8 +114,5 @@ public class Item implements ColecaoItem{
                 ", quantidadeRoupas=" + quantidadeRoupas + ", listaRoupas=" + listaRoupas.toString() + '}';
     }
 
-   
-    
-    
     
 }
