@@ -22,6 +22,7 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     
     public Pedido(){
     this.posicao = 0;
+    this.posicaoAtual = 0;
     }
     
     protected PagamentoStrategy pagamento;
@@ -31,6 +32,7 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     private String enderecoEntrega;
     private double valorFrete;
     private int posicao;
+    private int posicaoAtual;
     
     private final Item listaItem [] =  new Item[100];
     
@@ -70,12 +72,12 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     @Override
     public boolean pesquisarItem(Item item) {
         
-        if(item != null){
+        if(item == null) return false;
             
             for(Item e: listaItem){
                 if(e.equals(item)) return true;
             }  
-        }
+        
         return false;
     }
     
@@ -88,6 +90,16 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
            return true;
        }
        return false;
+    }
+    
+    @Override
+    public boolean hasNext() {
+       return posicaoAtual < posicao && listaItem[posicaoAtual] != null;
+    }
+
+    @Override
+    public Object next() {
+       return listaItem[posicaoAtual++];
     }
     
     public int getCodigo() {
@@ -131,16 +143,7 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     }
     
    
-    @Override
-    public boolean hasNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object next() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     public String toString() {
         return "Pedido{" + "codigo=" + codigo + ", dataPedido=" + 

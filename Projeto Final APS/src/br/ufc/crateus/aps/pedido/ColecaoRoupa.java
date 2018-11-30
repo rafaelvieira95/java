@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package br.ufc.crateus.aps.pedido;
-import br.ufc.crateus.aps.roupas.RoupaDecorator;
+
+import br.ufc.crateus.aps.roupas.ModeloRoupa;
+import br.ufc.crateus.aps.roupas.Roupa;
+import br.ufc.crateus.aps.roupas.RoupaBuilder;
 
 /**
  *
@@ -12,12 +15,17 @@ import br.ufc.crateus.aps.roupas.RoupaDecorator;
  */
 public interface ColecaoRoupa {
     
-    boolean adicionarRoupa(RoupaDecorator r);
+    void gerarRoupa(ModeloRoupa modelo);
     
-    boolean apagarRoupa(RoupaDecorator r);
+    boolean adicionarRoupa(Roupa r);
+    
+    boolean apagarRoupa(Roupa r);
+    
+    boolean pesquisarRoupa(Roupa r);
     
     boolean colecaoVazia();
     
-    boolean pesquisarRoupa(RoupaDecorator r);
+    RoupaBuilder obterRoupa();
+    
     
 }
