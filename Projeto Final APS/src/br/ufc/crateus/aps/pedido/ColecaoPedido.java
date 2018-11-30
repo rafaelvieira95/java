@@ -11,7 +11,7 @@ package br.ufc.crateus.aps.pedido;
  */
 public interface ColecaoPedido {
     
-    boolean adicionarItem(Item item);
+    boolean adicionarItem(Item ... item);
 
     boolean apagarItem(int i);
     

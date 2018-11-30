@@ -41,10 +41,13 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     }
       
         @Override
-    public boolean adicionarItem(Item item){
+    public boolean adicionarItem(Item ... item){
         if(item != null && posicao < listaItem.length){
-            listaItem[posicao] = item;
+            
+            for(int i =0; i < item.length; i++){
+            listaItem[posicao] = item[i];
             posicao++;
+            }
             return true;
         }
         return false;
