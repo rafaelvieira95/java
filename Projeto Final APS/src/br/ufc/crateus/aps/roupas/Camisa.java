@@ -9,22 +9,58 @@ package br.ufc.crateus.aps.roupas;
  *
  * @author rafael
  */
-public class Camisa extends RoupaDecorator{
+public class Camisa extends RoupaAtributo implements Roupa{
 
     public Camisa(){}
     
-    public Camisa(Roupa novaRoupa){
-        super(novaRoupa);
-    }
     
-    @Override
-    public double custoRoupa() {
-        return this.getValor() + custoComOutraRoupa();
+     @Override
+    public void setCodido(int codigo) {
+        this.codigo = codigo;
     }
 
     @Override
-    public Roupa retornaPecaCombinada() {
-        return novaRoupa != null? novaRoupa : null;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
-    
+
+    @Override
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    @Override
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    @Override
+    public void setQuantidadeEstoque(int quantidade) {
+        this.quantidadeEstoque = quantidade;
+    }
+
+    @Override
+    public void setAnoColecao(int anoColecao) {
+        this.anoColecao = anoColecao;
+    }
+
+    @Override
+    public void setEsgotado(boolean esgostado) {
+        this.esgotado = esgostado;
+    }
+
+    @Override
+    public void setGenero(char genero) {
+        this.genero = genero;
+    }
+
+    @Override
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    @Override
+    public void setEstilista(Estilista estilista) {
+        this.estilista = estilista;
+    }
 }
