@@ -5,107 +5,43 @@
  */
 package br.ufc.crateus.aps.cliente;
 
-import br.ufc.crateus.aps.pedido.Pedido;
-import java.util.List;
-
 /**
  *
  * @author rafael
  */
-public class PessoaEstrangeira extends Cliente{
+public class PessoaEstrangeira extends Pessoa{
     
     private String passaporte;
-    
-    
-    public PessoaEstrangeira(PEBuilder p){
-          
-        setCodigo(p.codigo);
-        setNome(p.nome);
-        passaporte = p.passaporte;
-        setEndereco(p.endereco);
-        setCidade(p.cidade);
-        setEstado(p.estado);
-        setCep(p.cep);
-        setTelefone(p.telefone);
-        setEmail(p.email);
-    }
-    
-     public List<Pedido> getListaPedidos() {
-        return super.getListaPedidos(); 
-    }
-    
-    public static class PEBuilder {
 
-        private int codigo;
-        private String nome;
-        private String passaporte;
-        private String endereco;
-        private String cidade;
-        private String estado;
-        private String cep;
-        private String telefone;
-        private String email;
-
-        public PEBuilder(String nome, String passaporte) {
-            this.nome = nome;
-            this.passaporte = passaporte;
-        }
-
-        public PEBuilder() {
-        }
-
-        public PEBuilder codigo(int codigo) {
-            this.codigo = codigo;
-            return this;
-        }
-
-        public PEBuilder nome(String nome) {
-            this.nome = nome;
-            return this;
-        }
-
-        public PEBuilder passaporte(String passaporte) {
-            this.passaporte = passaporte;
-            return this;
-        }
-
-        public PEBuilder endereco(String endereco) {
-            this.endereco = endereco;
-            return this;
-        }
-
-        public PEBuilder cidade(String cidade) {
-            this.cidade = cidade;
-            return this;
-        }
-
-        public PEBuilder estado(String estado) {
-            this.estado = estado;
-            return this;
-        }
-
-        public PEBuilder cep(String cep) {
-            this.cep = cep;
-            return this;
-        }
-
-        public PEBuilder telefone(String telefone) {
-            this.telefone = telefone;
-            return this;
-        }
-
-        public PEBuilder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Cliente builder() {
-            return new PessoaEstrangeira(this);
-        }
-    }
-    
     @Override
-    public void infoCliente() {
+    public boolean autenticaDocumento(String documento) {
+        return documento.matches("[A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9]");
+    }
+   
+    @Override
+    public void setCpf(String cpf) {
+        //Não consta
+    }
+
+    @Override
+    public void setCnpj(String cnpj) {
+        //Não consta
+    }
+
+    @Override
+    public void setPassaporte(String passaporte) {
+        this.passaporte = passaporte;
+    }
+
+    @Override
+    public void setNomeFantasia(String nomeFantasia) {
+        //Não consta
+        
+    }
+   
+    
+      @Override
+    public String infoCliente() {
         
             StringBuilder c = new StringBuilder("\tInformações do Cliente").append("\n");
         c.append("Código: ").append(getCodigo()).append("\n").
@@ -117,9 +53,15 @@ public class PessoaEstrangeira extends Cliente{
                 append("Cep: ").append(getCep()).append("\n").
                 append("Telefone: ").append(getTelefone()).append("\n").
                 append("E-mail: ").append(getEmail()).append("\n");
-        
-        System.out.println(c.toString());
-        
+                c.append(this.listaPedidos());
+       
+       return c.toString();
     }
+
+    @Override
+    public String toString() {
+        return infoCliente();
+    }
+    
     
 }
