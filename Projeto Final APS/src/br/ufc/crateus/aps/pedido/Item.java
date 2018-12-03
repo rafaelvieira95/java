@@ -126,7 +126,7 @@ public class Item implements ColecaoRoupa {
     public String toString() {
         return "Item{" + "codigo=" + codigo + ", codigoPedido="
                 + codigoPedido + ", preco=" + preco + ", valorDesconto=" + valorDesconto
-                + ", quantidadeRoupas=" + quantidadeRoupas + ", listaRoupas=" + listaRoupas.toString() + '}';
+                + ", quantidadeRoupas=" + quantidadeRoupas + ", ListaRoupas=" + listaRoupas.toString() +"}\n";
     }
 
    

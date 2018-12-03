@@ -19,7 +19,7 @@ public interface ColecaoItem {
 
     boolean colecaoVazia();
 
-    void imprimirColecao();  
+    String imprimirColecao();  
     
     boolean pesquisarItem(Item item);
 }

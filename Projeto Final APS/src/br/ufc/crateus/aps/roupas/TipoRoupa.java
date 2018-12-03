@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufc.crateus.aps.financeiro;
-
-import br.ufc.crateus.aps.pedido.Pedido;
+package br.ufc.crateus.aps.roupas;
 
 /**
  *
  * @author rafael
  */
-public interface Pagamento {
-    
-    void pagar(double valor,Pedido pedido);
-    
+public enum TipoRoupa {
+    CALCA,VESTIDO,CAMISA
 }

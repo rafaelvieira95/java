@@ -7,23 +7,17 @@ package br.ufc.crateus.aps.pedido;
 
 import br.ufc.crateus.aps.financeiro.Pagamento;
 import br.ufc.crateus.aps.financeiro.PagamentoStrategy;
-import java.util.Arrays;
-
 /**
  *
  * @author rafael
  */
 public class Pedido implements PedidoIterator,ColecaoItem{
 
-    public Pedido(Pagamento pag){
-        this.pagamento = new PagamentoStrategy(pag);
-        this.posicao = 0;
-    }
-    
     public Pedido(){
     this.posicao = 0;
     this.posicaoAtual = 0;
     this.listaItem = new Item[100];
+    
     }
     
     protected PagamentoStrategy pagamento;
@@ -32,21 +26,25 @@ public class Pedido implements PedidoIterator,ColecaoItem{
     private String dataPagamento;
     private String enderecoEntrega;
     private double valorFrete;
+    private double valorTotal;
     private int posicao;
     private int posicaoAtual;
     
     private Item listaItem []; 
     
-    public void definirFormaPagamento(Pagamento pag){
+    public void definirFormaPagamento(double valor,Pagamento pag){
         this.pagamento = new PagamentoStrategy(pag);
+        this.pagamento.pagar(valor,this);
     }
       
         @Override
     public boolean adicionarItem(Item ... item){
+        
         if(item != null && posicao < listaItem.length){
             
             for(int i =0; i < item.length; i++){
             listaItem[posicao] = item[i];
+            valorTotal += item[i].getPreco() * item[i].getQuantidadeRoupas();
             posicao++;
             }
             return true;
@@ -69,8 +67,8 @@ public class Pedido implements PedidoIterator,ColecaoItem{
     }
 
     @Override
-    public void imprimirColecao() {
-        System.out.println(Arrays.toString(listaItem));
+    public String imprimirColecao() {
+        return listaDeItens();
     }
 
     @Override
@@ -145,15 +143,35 @@ public class Pedido implements PedidoIterator,ColecaoItem{
     public void setValorFrete(double valorFrete) {
         this.valorFrete = valorFrete;
     }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
     
-   
+    
+    
+    private String listaDeItens(){
+        
+        StringBuilder sb = new StringBuilder();
+        
+        while(hasNext()){
+            sb.append(next());
+        }
+        posicaoAtual = 0;
+        return sb.toString();
+    }
+    
     
     @Override
     public String toString() {
         return "Pedido{" + "codigo=" + codigo + ", dataPedido=" + 
                 dataPedido + ", dataPagamento=" + dataPagamento + ", enderecoEntrega=" + 
-                enderecoEntrega + ", valorFrete=" + valorFrete +", listaItem=" 
-                + Arrays.toString(listaItem) + '}';
+                enderecoEntrega + ", valorFrete=" + valorFrete +"\n listaItem=" 
+                + listaDeItens() + '}';
     }
 
    

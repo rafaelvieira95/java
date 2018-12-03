@@ -5,6 +5,10 @@
  */
 package br.ufc.crateus.aps.financeiro;
 
+
+import br.ufc.crateus.aps.pedido.Pedido;
+
+
 /**
  *
  * @author rafael
@@ -18,8 +22,8 @@ public class PagamentoStrategy implements Pagamento{
     }
     
     @Override
-    public void pagar(double valor) {
-        pag.pagar(valor);
+    public void pagar(double valor,Pedido pedido) {
+        pag.pagar(valor,pedido);
     }
     
 }

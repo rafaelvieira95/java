@@ -11,25 +11,37 @@ import br.ufc.crateus.aps.pedido.Pedido;
  *
  * @author rafael
  */
-public class ClienteProxy implements Autenticacao,ColecaoPedido{
-    
+public class ClienteProxy implements Autenticacao, ColecaoPedido {
+
     private ClienteBuilder cli;
     private String documento;
 
     public ClienteProxy(String documento) {
-    this.documento = documento;
+        this.documento = documento;
     }
-      
-    public void criarCliente(TipoCliente tc){
-   
+
+    public void criarCliente(TipoCliente tc) {
+
         cli = ClienteFactory.factoryMethod(tc);
-        if(!cli.Builder().autenticaDocumento(this.documento)){
-            cli = null;
+        if (!cli.Builder().autenticaDocumento(this.documento)) {
+
             throw new IllegalArgumentException("Documento Inválido!");
         }
-        
+        switch (tc) {
+            case PESSOA_FISICA:
+                cli.cpf(documento);
+                break;
+            case PESSOA_JURIDICA:
+                cli.cnpj(documento);
+                break;
+            case PESSOA_ESTRANGEIRA:
+                cli.passaporte(documento);
+                break;
+
+            default:
+        }
     }
-    
+
     @Override
     public ClienteBuilder instance() {
         return cli;
@@ -37,17 +49,20 @@ public class ClienteProxy implements Autenticacao,ColecaoPedido{
 
     @Override
     public boolean autenticaDocumento(String documento) {
-       return cli.Builder().autenticaDocumento(documento);
+        return cli.Builder().autenticaDocumento(documento);
     }
 
     @Override
     public boolean adicionarPedido(Pedido... pedido) {
-        if(pedido == null) return false;
-        
-        for(Pedido p : pedido)
-           instance().Builder().listaPedidos().add(p);
-                
-         return true;       
+        if (pedido == null) {
+            return false;
+        }
+
+        for (Pedido p : pedido) {
+            instance().Builder().listaPedidos().add(p);
+        }
+
+        return true;
     }
 
     @Override
@@ -64,5 +79,5 @@ public class ClienteProxy implements Autenticacao,ColecaoPedido{
     public boolean colecaoVazia() {
         return instance().Builder().listaPedidos().isEmpty();
     }
-    
+
 }

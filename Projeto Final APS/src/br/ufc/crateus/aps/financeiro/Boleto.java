@@ -5,6 +5,9 @@
  */
 package br.ufc.crateus.aps.financeiro;
 
+import br.ufc.crateus.aps.pedido.Pedido;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rafael
@@ -15,8 +18,16 @@ public class Boleto implements Pagamento{
     protected String descricao;
     
     @Override
-    public void pagar(double valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void pagar(double valor,Pedido pedido) {
+    
+         if(valor >= pedido.getValorTotal()){
+            pedido.setValorTotal(valor - pedido.getValorTotal());
+            JOptionPane.showMessageDialog(null, "pagamento via Boleto Bancário!\n Pagamento realizado com sucesso!");
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Valor insuficiente!");
+        }
+        
     }
     
 }

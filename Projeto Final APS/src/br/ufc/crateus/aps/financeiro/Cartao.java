@@ -5,6 +5,9 @@
  */
 package br.ufc.crateus.aps.financeiro;
 
+import br.ufc.crateus.aps.pedido.Pedido;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rafael
@@ -13,10 +16,26 @@ public class Cartao implements Pagamento {
 
     protected int codigo;
     protected String descricao;
+
+    public Cartao(int codigo,String descricao) {
+      this.codigo = codigo;
+      this.descricao = descricao;
+    }
+    
+    public Cartao(){}
     
     @Override
-    public void pagar(double valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void pagar(double valor,Pedido pedido) {
+       
+        if(valor >= pedido.getValorTotal()){
+            
+            pedido.setValorTotal(valor - pedido.getValorTotal());
+            JOptionPane.showMessageDialog(null, "pagamento via Cartão de cŕedito!\nPagamento realizado com sucesso!");
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Valor insuficiente!");
+        }
+        
     }
     
 }
