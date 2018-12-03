@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  * @author rafael
  */
-public class Pedido implements PedidoIterator,ColecaoPedido{
+public class Pedido implements PedidoIterator,ColecaoItem{
 
     public Pedido(Pagamento pag){
         this.pagamento = new PagamentoStrategy(pag);
@@ -23,6 +23,7 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     public Pedido(){
     this.posicao = 0;
     this.posicaoAtual = 0;
+    this.listaItem = new Item[100];
     }
     
     protected PagamentoStrategy pagamento;
@@ -34,7 +35,7 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     private int posicao;
     private int posicaoAtual;
     
-    private final Item listaItem [] =  new Item[100];
+    private Item listaItem []; 
     
     public void definirFormaPagamento(Pagamento pag){
         this.pagamento = new PagamentoStrategy(pag);
@@ -151,8 +152,8 @@ public class Pedido implements PedidoIterator,ColecaoPedido{
     public String toString() {
         return "Pedido{" + "codigo=" + codigo + ", dataPedido=" + 
                 dataPedido + ", dataPagamento=" + dataPagamento + ", enderecoEntrega=" + 
-                enderecoEntrega + ", valorFrete=" + valorFrete + ", posicao=" + posicao + ", listaItem=" 
-                + listaItem + '}';
+                enderecoEntrega + ", valorFrete=" + valorFrete +", listaItem=" 
+                + Arrays.toString(listaItem) + '}';
     }
 
    

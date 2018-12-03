@@ -16,6 +16,7 @@ import java.util.List;
  *
  * @author rafael
  */
+
 public class Item implements ColecaoRoupa {
 
     private int codigo;
@@ -120,8 +121,6 @@ public class Item implements ColecaoRoupa {
         this.quantidadeRoupas = quantidadeRoupas;
     }
 
-    
-   
     
     @Override
     public String toString() {
