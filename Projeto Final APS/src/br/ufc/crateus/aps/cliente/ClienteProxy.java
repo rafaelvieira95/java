@@ -5,11 +5,13 @@
  */
 package br.ufc.crateus.aps.cliente;
 
+import br.ufc.crateus.aps.pedido.Pedido;
+
 /**
  *
  * @author rafael
  */
-public class ClienteProxy implements Autenticacao{
+public class ClienteProxy implements Autenticacao,ColecaoPedido{
     
     private ClienteBuilder cli;
     private String documento;
@@ -36,6 +38,31 @@ public class ClienteProxy implements Autenticacao{
     @Override
     public boolean autenticaDocumento(String documento) {
        return cli.Builder().autenticaDocumento(documento);
+    }
+
+    @Override
+    public boolean adicionarPedido(Pedido... pedido) {
+        if(pedido == null) return false;
+        
+        for(Pedido p : pedido)
+           instance().Builder().listaPedidos().add(p);
+                
+         return true;       
+    }
+
+    @Override
+    public boolean removerPedido(Pedido pedido) {
+        return instance().Builder().listaPedidos().remove(pedido);
+    }
+
+    @Override
+    public boolean pesquisarPedido(Pedido pedido) {
+        return instance().Builder().listaPedidos().contains(pedido);
+    }
+
+    @Override
+    public boolean colecaoVazia() {
+        return instance().Builder().listaPedidos().isEmpty();
     }
     
 }
