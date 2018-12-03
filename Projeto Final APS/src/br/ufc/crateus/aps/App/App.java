@@ -5,8 +5,8 @@
  */
 package br.ufc.crateus.aps.App;
 
-import br.ufc.crateus.aps.cliente.Cliente;
-import br.ufc.crateus.aps.cliente.PessoaFisica;
+import br.ufc.crateus.aps.cliente.ClienteProxy;
+import br.ufc.crateus.aps.cliente.TipoCliente;
 import br.ufc.crateus.aps.pedido.Item;
 import br.ufc.crateus.aps.pedido.Pedido;
 import br.ufc.crateus.aps.roupas.Estilista;
@@ -20,19 +20,24 @@ public class App {
     
     public static void main(String[] args) {
         
-        Cliente c = new PessoaFisica.PFBuilder().
-                codigo(20132).
+        ClienteProxy c = new ClienteProxy("00.001.222/0001-23");
+        c.criarCliente(TipoCliente.PESSOA_JURIDICA);
+        c.instance().
+                codigo(12321).
                 nome("Rafael").
-                estado("Ceará").
-                cpf("068.090.753-05").
                 email("rafaelimavieira@gmail.com").
-                cidade("Independecia").
                 cep("63640-000").
-                endereco("Rua Tenente Falcão").
-                telefone("88 993278922").
-                builder();
+                cidade("Independencia").
+                email("assadsada").Builder();
+        
+        
+   
         
         Pedido p = new Pedido();
+        p.setCodigo(123213);
+        p.setDataPagamento("23/08/19");
+        p.setEnderecoEntrega("Rua dos Alvinegros - GO");
+        p.setValorFrete(95.00);
         
         Item it = new Item();
         it.gerarRoupa(ModeloRoupa.CAMISA);
@@ -68,15 +73,14 @@ public class App {
                 codido(1016);
         it2.adicionarRoupa(it2.obterRoupa().builder());
         
-        p.adicionarItem(it);
-        p.adicionarItem(it2);
+        p.adicionarItem(it,it2);
+              
+      //  while(p.hasNext()){
+       // System.out.println(p.next());
+        //}
+         c.adicionarPedido(p);
         
-        while(p.hasNext()){
-        System.out.println(p.next());
-        }
-        //p.adicionarItem();
-        
-        //c.infoCliente();
+        System.out.println(c.instance().toString());
         
        
         
