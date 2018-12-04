@@ -31,4 +31,5 @@ public interface Roupa {
     
     void setEstilista(Estilista estilista);
     
+    double getValor();
 }

@@ -14,9 +14,9 @@ import br.ufc.crateus.aps.financeiro.PagamentoStrategy;
 public class Pedido implements PedidoIterator,ColecaoItem{
 
     public Pedido(){
-    this.posicao = 0;
-    this.posicaoAtual = 0;
-    this.listaItem = new Item[100];
+      this.posicao = 0;
+      this.posicaoAtual = 0;
+      this.listaItem = new Item[100];
     
     }
     
@@ -44,7 +44,7 @@ public class Pedido implements PedidoIterator,ColecaoItem{
             
             for(int i =0; i < item.length; i++){
             listaItem[posicao] = item[i];
-            valorTotal += item[i].getPreco() * item[i].getQuantidadeRoupas();
+            valorTotal += item[i].getPreco();
             posicao++;
             }
             return true;

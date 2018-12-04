@@ -11,6 +11,8 @@ import br.ufc.crateus.aps.pedido.Item;
 import br.ufc.crateus.aps.pedido.Pedido;
 import br.ufc.crateus.aps.roupas.Estilista;
 import br.ufc.crateus.aps.roupas.ModeloRoupa;
+import br.ufc.crateus.aps.roupas.RoupaBuilder;
+import br.ufc.crateus.aps.roupas.RoupaFactory;
 
 /**
  *
@@ -56,49 +58,52 @@ public class App {
         p.setValorFrete(95.00);
         
         Item it = new Item();
-        it.gerarRoupa(ModeloRoupa.CAMISA);
-        it.obterRoupa().
-                esgotado(false).
+        
+        it.setCodigo(11);
+        it.setQuantidadeRoupas(2);
+        it.setValorDesconto(15);
+        it.setCodigoPedido(155);
+        
+        RoupaBuilder r = RoupaFactory.factoryMethod(ModeloRoupa.CAMISA);
+       
+                r.esgotado(false).
                 anoColecao(2018).
                 genero('F').
                 tipo("Casual").
-                valor(89.99).marca("Tommy").
+                valor(89.99).
+                marca("Tommy").
                 tamanho(2).
                 estilista(Estilista.FredBauer).
-                quantidadeEstoque(15).
+                quantidadeEstoque(10).
                 codido(1012);
         
-        it.adicionarRoupa(it.obterRoupa().builder());
         
-        Item it2 = new Item();
-        it2.setCodigo(14);
-        it2.setQuantidadeRoupas(1);
-        it2.setValorDesconto(15);
-        it2.setCodigoPedido(155);
-      
-        it2.gerarRoupa(ModeloRoupa.VESTIDO);
-        it2.obterRoupa().
-                esgotado(false).
+   
+       RoupaBuilder r2 = RoupaFactory.factoryMethod(ModeloRoupa.VESTIDO);
+                r2.esgotado(false).
                 anoColecao(2018).
                 genero('F').
                 tipo("Casamento").
-                valor(589.99).marca("Aguia Bela").
+                valor(589.99).
+                marca("Aguia Bela").
                 tamanho(2).
                 estilista(Estilista.PaulVenetto).
                 quantidadeEstoque(2).
                 codido(1016);
-        it2.adicionarRoupa(it2.obterRoupa().builder());
-        
-        p.adicionarItem(it,it2);
+                
+        it.adicionarRoupa(r.builder());
+        it.adicionarRoupa(r2.builder());
+        p.adicionarItem(it);
         //p.apagarItem();
-       System.out.println(p.imprimirColecao());      
+     //  System.out.println(p.imprimirColecao());      
       //  while(p.hasNext()){
        // System.out.println(p.next());
         //}
          //c.adicionarPedido(p);
         c2.adicionarPedido(p);
-        System.out.println(c2.instance().toString());
-        
+        System.out.println(it.getPreco());
+       // System.out.println(c2.instance().toString());
+      
        
         
     }

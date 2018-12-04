@@ -5,10 +5,7 @@
  */
 package br.ufc.crateus.aps.pedido;
 
-import br.ufc.crateus.aps.roupas.ModeloRoupa;
 import br.ufc.crateus.aps.roupas.Roupa;
-import br.ufc.crateus.aps.roupas.RoupaBuilder;
-import br.ufc.crateus.aps.roupas.RoupaFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,23 +21,19 @@ public class Item implements ColecaoRoupa {
     private double preco;
     private double valorDesconto;
     private int quantidadeRoupas;
-    private RoupaBuilder novaRoupa;
-    private final List<Roupa> listaRoupas;
+    private List<Roupa> listaRoupas;
 
     public Item() {
         listaRoupas = new ArrayList<>();
     }
 
     @Override
-    public void gerarRoupa(ModeloRoupa modelo) {
-         novaRoupa = RoupaFactory.factoryMethod(modelo);
-    }
-
-    @Override
     public boolean adicionarRoupa(Roupa r) {
         if (r == null) return false;
+        this.preco += r.getValor();
         listaRoupas.add(r);
-      
+       
+        
         return true;
     }
 
@@ -54,6 +47,7 @@ public class Item implements ColecaoRoupa {
         for (Roupa roupa : listaRoupas) {
             if (roupa.equals(r)) {
                 listaRoupas.remove(r);
+                //preco -= r
                 return true;
             }
         }
@@ -80,11 +74,7 @@ public class Item implements ColecaoRoupa {
         return false;
     }
 
-     @Override
-    public RoupaBuilder obterRoupa() {
-        return novaRoupa;
-    }
-    
+ 
     public int getCodigo() {
         return codigo;
     }
@@ -128,7 +118,5 @@ public class Item implements ColecaoRoupa {
                 + codigoPedido + ", preco=" + preco + ", valorDesconto=" + valorDesconto
                 + ", quantidadeRoupas=" + quantidadeRoupas + ", ListaRoupas=" + listaRoupas.toString() +"}\n";
     }
-
-   
 
 }
