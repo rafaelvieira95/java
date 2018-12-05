@@ -11,7 +11,5 @@ package br.ufc.crateus.aps.cliente;
  */
 public interface Autenticacao {
     
-    ClienteBuilder instance();
-    
     boolean autenticaDocumento(String documento);
 }

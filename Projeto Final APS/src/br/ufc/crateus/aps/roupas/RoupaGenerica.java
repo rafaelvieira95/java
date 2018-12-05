@@ -74,7 +74,7 @@ public abstract class RoupaGenerica implements Roupa{
 
     @Override
     public double getValor() {
-        return valor;
+        return this.valor;
     }
     
     

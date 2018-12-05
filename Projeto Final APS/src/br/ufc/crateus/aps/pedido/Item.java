@@ -6,6 +6,7 @@
 package br.ufc.crateus.aps.pedido;
 
 import br.ufc.crateus.aps.roupas.Roupa;
+import br.ufc.crateus.aps.roupas.RoupaGenerica;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +31,9 @@ public class Item implements ColecaoRoupa {
     @Override
     public boolean adicionarRoupa(Roupa r) {
         if (r == null) return false;
-        this.preco += r.getValor();
         listaRoupas.add(r);
-       
+        this.preco += r.getValor();
+        quantidadeRoupas++;
         
         return true;
     }
@@ -47,7 +48,9 @@ public class Item implements ColecaoRoupa {
         for (Roupa roupa : listaRoupas) {
             if (roupa.equals(r)) {
                 listaRoupas.remove(r);
-                //preco -= r
+                preco -= r.getValor();
+                quantidadeRoupas--;
+                
                 return true;
             }
         }
@@ -64,14 +67,7 @@ public class Item implements ColecaoRoupa {
         if (r == null) {
             return false;
         }
-
-        for (Roupa roupa : listaRoupas) {
-            if (roupa.equals(r)) {
-                return true;
-            }
-        }
-
-        return false;
+        return listaRoupas.stream().anyMatch((roupa) -> (roupa.equals(r)));
     }
 
  
@@ -106,11 +102,6 @@ public class Item implements ColecaoRoupa {
     public int getQuantidadeRoupas() {
         return quantidadeRoupas;
     }
-
-    public void setQuantidadeRoupas(int quantidadeRoupas) {
-        this.quantidadeRoupas = quantidadeRoupas;
-    }
-
     
     @Override
     public String toString() {

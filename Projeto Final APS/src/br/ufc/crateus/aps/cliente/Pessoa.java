@@ -7,6 +7,7 @@ package br.ufc.crateus.aps.cliente;
 
 import br.ufc.crateus.aps.pedido.Pedido;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 public abstract class Pessoa implements Cliente,Autenticacao{
     
     public Pessoa(){
-    listaPedidos = new ArrayList<>();
+    listaPedidos = new LinkedList<>();
     }
     
     private int codigo;
@@ -37,11 +38,6 @@ public abstract class Pessoa implements Cliente,Autenticacao{
         return listaPedidos;
     }
 
-    @Override
-    public ClienteBuilder instance() {
-        return null;
-    }
-    
     @Override
     public void setCodigo(int codigo) {
         this.codigo = codigo;

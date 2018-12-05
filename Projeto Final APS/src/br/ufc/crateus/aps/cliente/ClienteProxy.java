@@ -6,7 +6,7 @@
 package br.ufc.crateus.aps.cliente;
 
 import br.ufc.crateus.aps.pedido.Pedido;
-
+;
 /**
  *
  * @author rafael
@@ -14,35 +14,53 @@ import br.ufc.crateus.aps.pedido.Pedido;
 public class ClienteProxy implements Autenticacao, ColecaoPedido {
 
     private ClienteBuilder cli;
-    private String documento;
+    private final String documento;
 
     public ClienteProxy(String documento) {
         this.documento = documento;
     }
 
     public void criarCliente(TipoCliente tc) {
-
+        
         cli = ClienteFactory.factoryMethod(tc);
-        if (!cli.Builder().autenticaDocumento(this.documento)) {
-
-            throw new IllegalArgumentException("Documento Inválido!");
-        }
+        
         switch (tc) {
             case PESSOA_FISICA:
+                
+            {
+                
+                if(!cli.Builder().autenticaDocumento(this.documento)){
+                    throw new IllegalArgumentException("Documento inválido!");
+                }
                 cli.cpf(documento);
+            }
                 break;
             case PESSOA_JURIDICA:
+                
+                 {
+                
+                if(!cli.Builder().autenticaDocumento(this.documento)){
+                    throw new IllegalArgumentException("Documento inválido!");
+                }
                 cli.cnpj(documento);
+            }
                 break;
+                
             case PESSOA_ESTRANGEIRA:
-                cli.passaporte(documento);
+                 {
+                   
+                if(!cli.Builder().autenticaDocumento(this.documento)){
+                    throw new IllegalArgumentException("Documento inválido!");
+                }
+                 cli.passaporte(documento);
+            }
                 break;
 
             default:
         }
     }
 
-    @Override
+   
     public ClienteBuilder instance() {
         return cli;
     }
@@ -78,6 +96,12 @@ public class ClienteProxy implements Autenticacao, ColecaoPedido {
     @Override
     public boolean colecaoVazia() {
         return instance().Builder().listaPedidos().isEmpty();
+    }
+
+    @Override
+    public Pedido pagarPedido(int i) {
+         return cli.Builder().listaPedidos().get(i);
+       
     }
 
 }

@@ -13,6 +13,5 @@ package br.ufc.crateus.aps.roupas;
 public class Vestido extends RoupaGenerica{
 
     public Vestido(){}
-    
-    
+   
 }

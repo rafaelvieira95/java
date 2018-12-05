@@ -7,6 +7,8 @@ package br.ufc.crateus.aps.App;
 
 import br.ufc.crateus.aps.cliente.ClienteProxy;
 import br.ufc.crateus.aps.cliente.TipoCliente;
+import br.ufc.crateus.aps.financeiro.Boleto;
+import br.ufc.crateus.aps.financeiro.Cartao;
 import br.ufc.crateus.aps.pedido.Item;
 import br.ufc.crateus.aps.pedido.Pedido;
 import br.ufc.crateus.aps.roupas.Estilista;
@@ -19,6 +21,9 @@ import br.ufc.crateus.aps.roupas.RoupaFactory;
  * @author rafael
  */
 public class App {
+    
+    
+    
     
     public static void main(String[] args) {
         
@@ -50,6 +55,18 @@ public class App {
                 email("emporio@zenir.com.br").
                 Builder();
          
+          ClienteProxy c3 = new ClienteProxy("BR286542");
+         c3.criarCliente(TipoCliente.PESSOA_ESTRANGEIRA);
+         c3.instance().
+                codigo(15099).
+                nome("Fausto").
+                email("fausto@gmail.com").
+                cep("63680-222").
+                estado("São paulo").
+                endereco("Bairro Morumbi - 1245A").
+                telefone("01199873636737").
+                cidade("São Paulo").
+                Builder();
          
         Pedido p = new Pedido();
         p.setCodigo(123213);
@@ -60,7 +77,7 @@ public class App {
         Item it = new Item();
         
         it.setCodigo(11);
-        it.setQuantidadeRoupas(2);
+   
         it.setValorDesconto(15);
         it.setCodigoPedido(155);
         
@@ -99,12 +116,15 @@ public class App {
       //  while(p.hasNext()){
        // System.out.println(p.next());
         //}
-         //c.adicionarPedido(p);
-        c2.adicionarPedido(p);
-        System.out.println(it.getPreco());
-       // System.out.println(c2.instance().toString());
-      
-       
+         c.adicionarPedido(p);
+         c2.adicionarPedido(p);
+         System.out.println(c.instance().toString());
+         System.out.println(c2.instance().toString());
+         System.out.println(c3.instance().toString());
+        // c2.pagarPedido(0).definirFormaPagamento(780, new Boleto());
+        // c2.pagarPedido(0).definirFormaPagamento(780, new Cartao());
+          //System.out.println(c2.pagarPedido(0));
+          
         
     }
 }

@@ -21,4 +21,6 @@ public interface ColecaoPedido {
     
     boolean colecaoVazia();
     
+    Pedido pagarPedido(int i);
+    
 }
