@@ -58,8 +58,8 @@ public class Implements extends LinearProbingHashST<Object, Object> {
 
 	//	 st.generateTests();
 
-		File Dictionary = new File("/home/rafael/Documentos/newDic.txt");
-		File DictionaryPersonal = new File("/home/rafael/Documentos/DicionarioPessoal2.txt");
+		File Dictionary = new File("/home/rafael/Documents/newDic.txt");
+		File DictionaryPersonal = new File("/home/rafael/Documents/DicionarioPessoal2.txt");
 
 		SpellCheckerHash dict = new SpellCheckerHash();
 		dict.spellChecker(Dictionary, DictionaryPersonal);
